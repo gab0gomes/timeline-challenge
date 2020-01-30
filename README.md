@@ -1,4 +1,4 @@
-# dito-challenge
+# timeline-challenge
 
 ## Project setup
 ```

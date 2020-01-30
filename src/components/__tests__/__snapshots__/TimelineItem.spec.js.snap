@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimelineItem.vue renders TimelineItem correctly 1`] = `
+<div
+  class="timeline-item success"
+>
+  <div
+    class="header"
+  >
+    <h5>
+      Dummy header
+    </h5>
+  </div>
+   
+  <div
+    class="content"
+  >
+    <div
+      class="fake-info"
+    >
+      Fake text
+    </div>
+  </div>
+</div>
+`;

@@ -16,12 +16,17 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '../node_modules/minireset.css/minireset.sass';
+  @import './assets/styles/app.scss';
+
+  * {
+    box-sizing: border-box;
+  }
 
   body {
     background-color: #EDF0FC;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
+    color: #555;
   }
 
   #app {

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconAndText.vue renders IconAndText correctly 1`] = `
+<span
+  class="d-flex align-items-center"
+>
+  <svgicon-stub
+    fill="true"
+    height=""
+    name="calendar"
+    title="dummy"
+    width="14px"
+  />
+   
+  <span
+    class="ml-1"
+  >
+    11/11/1990
+  </span>
+</span>
+`;

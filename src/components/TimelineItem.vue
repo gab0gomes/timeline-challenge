@@ -2,11 +2,13 @@
   <div class="timeline-item"
     :class="icon"
   >
-    <div class="header">
-      <slot name="header"/>
-    </div>
     <div class="content">
-      <slot />
+      <div class="header">
+        <slot name="header"/>
+      </div>
+      <div class="body">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -34,17 +36,12 @@ export default {
 </script>
 
 <style lang="scss">
-// * {
-//   box-sizing: border-box;
-// }
-
-/* Container around content */
 .timeline-item {
-  padding: 10px 40px;
+  padding: 10px 30px;
   position: relative;
   background-color: inherit;
   width: 50%;
-  left: 50%;
+  left: 33%;
 
   &.success {
     &::after {
@@ -53,36 +50,49 @@ export default {
       background-size: 1.5em;
     }
   }
-  &::after {
+  &::after { //circles
     content: "";
     position: absolute;
     width: 1.5em;
     height: 1.5em;
-    right: -17px;
-    top: 15px;
+    right: -15px;
+    top: 20px;
     border-radius: 50%;
     z-index: 1;
     left: -16px;
   }
 
-  &::before {
+  &::before { //arrows
     content: " ";
     height: 0;
     position: absolute;
     top: 22px;
     width: 0;
     z-index: 1;
-    left: 30px;
+    left: 20px;
     border: medium solid white;
     border-width: 10px 10px 10px 0;
     border-color: transparent white transparent transparent;
   }
 
-  &.content {
-    padding: 20px 30px;
+  .content {
+    // padding: 15px 20px;
     background-color: white;
     position: relative;
     border-radius: 6px;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
+    overflow: hidden;
+
+    .header {
+      padding: 10px 20px 10px 15px ;
+
+      // height: 3em;
+    }
+
+    .body {
+      background-color: #F8F8F8;
+      padding: 10px 20px 10px 15px;
+    }
   }
 }
 
@@ -90,12 +100,12 @@ export default {
 @media screen and (max-width: 600px) {
   .timeline-item  {
     width: 100%;
-    padding-left: 70px;
+    padding-left: 60px;
     padding-right: 25px;
     left: 0%;
 
-    &::before {
-      left: 60px;
+    &::before { //arrow
+      left: 50px;
       border: medium solid white;
       border-width: 10px 10px 10px 0;
       border-color: transparent white transparent transparent;

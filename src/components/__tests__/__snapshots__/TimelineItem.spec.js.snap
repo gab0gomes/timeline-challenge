@@ -5,20 +5,24 @@ exports[`TimelineItem.vue renders TimelineItem correctly 1`] = `
   class="timeline-item success"
 >
   <div
-    class="header"
-  >
-    <h5>
-      Dummy header
-    </h5>
-  </div>
-   
-  <div
     class="content"
   >
     <div
-      class="fake-info"
+      class="header"
     >
-      Fake text
+      <h5>
+        Dummy header
+      </h5>
+    </div>
+     
+    <div
+      class="body"
+    >
+      <div
+        class="fake-info"
+      >
+        Fake text
+      </div>
     </div>
   </div>
 </div>

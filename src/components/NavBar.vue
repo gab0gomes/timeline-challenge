@@ -6,7 +6,6 @@
       src="../assets/img/logo.svg"
     />
     <router-link to="/">Timeline</router-link>
-    <router-link to="/about">Sobre</router-link>
   </nav>
 </template>
 
@@ -16,7 +15,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .nav {
   padding: 15px 0px;
@@ -34,7 +33,7 @@ export default {
   }
 
   a {
-    color: #FFF;
+    color: white;
     text-decoration: none;
     margin-right: 2em;
     font-weight: bold;

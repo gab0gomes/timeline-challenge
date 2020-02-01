@@ -1,12 +1,10 @@
 <template>
   <table>
-    <col width="80%">
-    <col width="20%">
     <tr class="border-bottom">
       <th
         v-for="field in fields"
         :key="field.key"
-        :class="field.class"
+        :class="field.class || ''"
         class="font-weight-semibold"
       >
         {{ field.name }}
@@ -20,9 +18,9 @@
       <td
         v-for="field in fields"
         :key="field.key"
-        :class="field.class"
+        :class="field.class || ''"
       >
-        {{ row[field.key] }}
+        {{ row[field.key] || '--' }}
       </td>
     </tr>
   </table>

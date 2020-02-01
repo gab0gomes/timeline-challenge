@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table.vue renders IconAndText correctly 1`] = `
+<table>
+  <tr
+    class="border-bottom"
+  >
+    <th
+      class="font-weight-semibold text-md w-80"
+    >
+      
+      Produto
+    
+    </th>
+    <th
+      class="font-weight-semibold text-md w-20"
+    >
+      
+      Preço
+    
+    </th>
+  </tr>
+   
+  <tr
+    class="border-bottom"
+  >
+    <td
+      class="text-md w-80"
+    >
+      
+      Camisa Azul
+    
+    </td>
+    <td
+      class="text-md w-20"
+    >
+      
+      R$ 100,00
+    
+    </td>
+  </tr>
+  <tr
+    class=""
+  >
+    <td
+      class="text-md w-80"
+    >
+      
+      Calça Rosa
+    
+    </td>
+    <td
+      class="text-md w-20"
+    >
+      
+      R$ 150,00
+    
+    </td>
+  </tr>
+</table>
+`;

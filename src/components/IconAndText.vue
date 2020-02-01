@@ -4,6 +4,7 @@
       :name="icon"
       :title="alt"
       width="14px"
+      class="light-gray"
     />
     <span class="ml-1">{{ text }}</span>
   </span>

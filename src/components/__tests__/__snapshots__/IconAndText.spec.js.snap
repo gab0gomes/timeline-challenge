@@ -5,6 +5,7 @@ exports[`IconAndText.vue renders IconAndText correctly 1`] = `
   class="d-flex align-items-center"
 >
   <svgicon-stub
+    class="light-gray"
     fill="true"
     height=""
     name="calendar"

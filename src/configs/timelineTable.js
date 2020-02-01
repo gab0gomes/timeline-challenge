@@ -3,12 +3,12 @@ export default {
     {
       name: 'Produto',
       key: 'product',
-      class: 'text-md',
+      class: 'text-md w-80',
     },
     {
       name: 'Preço',
       key: 'price',
-      class: 'text-md',
+      class: 'text-md w-20',
     },
   ],
 };

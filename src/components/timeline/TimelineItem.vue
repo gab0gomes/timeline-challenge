@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .timeline-item {
   padding: 10px 30px;
   position: relative;
@@ -45,7 +45,7 @@ export default {
 
   &.success {
     &::after {
-      background-image: url('../assets/fonts/icons/check.svg');
+      background-image: url('../../assets/fonts/icons/check.svg');
       background-repeat: no-repeat;
       background-size: 1.5em;
     }
@@ -84,14 +84,14 @@ export default {
     overflow: hidden;
 
     .header {
-      padding: 10px 20px 10px 15px ;
+      padding: 10px 20px 10px 20px ;
 
       // height: 3em;
     }
 
     .body {
       background-color: #F8F8F8;
-      padding: 10px 20px 10px 15px;
+      padding: 10px 20px 10px 20px;
     }
   }
 }

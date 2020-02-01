@@ -1,6 +1,18 @@
 <template>
-  <div class="timeline">
+  <div
+    class="mt-3"
+    :class="{'d-flex justify-center': (!data.length)}"
+  >
+      <loading v-if="fetchLoadingPurchases" />
+      <alert
+        v-else-if="!data.length"
+        class="alert-secondary w-50"
+      >
+        Nenhum resultado encontrado.
+      </alert>
+
       <timeline-item
+        v-else
         v-for="(item) in data"
         :key="item.transactionId"
         status="success"
@@ -46,11 +58,13 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapGetters, mapActions } from 'vuex';
 
 import TimelineItem from '../components/timeline/TimelineItem.vue';
 import IconAndText from '../components/IconAndText.vue';
 import Table from '../components/Table.vue';
+import Loading from '../components/Loading.vue';
+import Alert from '../components/Alert.vue';
 
 import tableConfig from '../configs/timelineTable';
 
@@ -60,6 +74,8 @@ export default {
     TimelineItem,
     IconAndText,
     Table,
+    Loading,
+    Alert,
   },
   data() {
     return {
@@ -69,14 +85,28 @@ export default {
   },
 
   beforeMount() {
-    axios.get('https://storage.googleapis.com/dito-questions/events.json')
+    this.fetchPurchases()
       .then(({ data }) => {
-        this.data = this.groupData(data);
+        this.data = this.groupAndSortData(data);
       });
   },
 
+  computed: {
+    ...mapGetters('requests/purchases', {
+      fetchLoadingPurchases: 'fetchLoading',
+      fetchHasErrorPurchases: 'fetchHasError',
+      fetchHasSuccededPurchases: 'fetchHasSucceeded',
+    }),
+  },
+
   methods: {
-    groupData(data) {
+    ...mapActions('requests/purchases', ['fetchPurchases']),
+
+    groupAndSortData(data) {
+      if (!Object.keys(data).length) {
+        return [];
+      }
+
       const purchases = data.events
         .filter(purchase => purchase.event === 'comprou');
       const productPurchases = data.events
@@ -98,7 +128,7 @@ export default {
 
           return {
             product: name,
-            price,
+            price: this.getFormattedValue(price),
           };
         });
 
@@ -112,6 +142,19 @@ export default {
           products,
           transactionId,
         };
+      }).sort((purchase1, purchase2) => {
+        const date1 = new Date(purchase1.timestamp);
+        const date2 = new Date(purchase2.timestamp);
+
+        if (date1 > date2) {
+          return 1;
+        }
+
+        if (date1 < date2) {
+          return -1;
+        }
+
+        return 0;
       });
     },
     getFormattedDate(timestamp) {
@@ -131,14 +174,9 @@ export default {
     },
 
     getFormattedValue(value) {
-      return `R$ ${value},00`;
+      return value
+        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-  .timeline {
-    margin-top: 2em;
-  }
-</style>

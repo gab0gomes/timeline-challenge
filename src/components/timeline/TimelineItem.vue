@@ -50,7 +50,7 @@ export default {
     background-color: #D8D8D8;
     top: 0;
     bottom: 0;
-    left: 33%;
+    left: 25%;
     margin-left: -3px;
   }
 }
@@ -60,7 +60,7 @@ export default {
   position: relative;
   background-color: inherit;
   width: 50%;
-  left: 33%;
+  left: 25%;
 
   &.success {
     &::after {
@@ -95,7 +95,6 @@ export default {
   }
 
   .content {
-    // padding: 15px 20px;
     background-color: white;
     position: relative;
     border-radius: 6px;

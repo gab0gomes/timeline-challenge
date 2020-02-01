@@ -1,5 +1,21 @@
 @import '../node_modules/minireset.css/minireset.sass';
 @import './svg-icon.scss';
 
+@import './variables.scss';
 @import './margins.scss';
+@import './paddings.scss';
 @import './flex.scss';
+@import './colors.scss';
+@import './text.scss';
+@import './borders.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $light-purple;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: $dark-gray;
+}

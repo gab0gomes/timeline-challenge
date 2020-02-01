@@ -4,8 +4,16 @@
     :class="{'d-flex justify-center': (!data.length)}"
   >
       <loading v-if="fetchLoadingPurchases" />
+
       <alert
-        v-else-if="!data.length"
+        v-else-if="fetchHasErrorPurchases || !fetchHasSuccededPurchases"
+        class="alert-danger w-50"
+      >
+        Não foi possível obter os dados. Por favor, tente novamente.
+      </alert>
+
+      <alert
+        v-else-if="fetchHasSuccededPurchases && !data.length"
         class="alert-secondary w-50"
       >
         Nenhum resultado encontrado.
@@ -48,7 +56,14 @@
         </template>
 
         <template v-slot:default>
+          <alert
+            v-if="!item.products.length"
+            class="alert-secondary"
+          >
+            Nenhum produto encontrado.
+          </alert>
           <Table
+            v-else
             :fields="fields"
             :data="item.products"
           />

@@ -7,8 +7,8 @@ export default {
   state: { ...initialState },
 
   getters: {
-    fetchLoading({ loading }) {
-      return loading;
+    fetchLoading({ isFetching }) {
+      return isFetching;
     },
     fetchHasError({ hasError }) {
       return hasError;

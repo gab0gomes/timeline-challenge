@@ -1,26 +1,36 @@
 <template>
   <div
     class="mt-3"
-    :class="{'d-flex justify-center': (!data.length)}"
+    :class="{'d-flex align-items-center flex-column': (!data.length)}"
   >
-      <loading v-if="fetchLoadingPurchases" />
+    <h1 class="text-lg mb-3 d-flex justify-center">Timeline de Compras</h1>
+    <div
+      v-if="fetchLoadingPurchases"
+      class="d-flex justify-center"
+    >
+      <loading />
+    </div>
 
-      <alert
-        v-else-if="fetchHasErrorPurchases || !fetchHasSuccededPurchases"
-        class="alert-danger w-50"
-      >
-        Não foi possível obter os dados. Por favor, tente novamente.
-      </alert>
+    <alert
+      v-else-if="fetchHasErrorPurchases"
+      class="alert-danger w-50"
+    >
+      Não foi possível obter os dados. Por favor, tente novamente.
+    </alert>
 
-      <alert
-        v-else-if="fetchHasSuccededPurchases && !data.length"
-        class="alert-secondary w-50"
-      >
-        Nenhum resultado encontrado.
-      </alert>
+    <alert
+      v-else-if="fetchHasSuccededPurchases && !data.length && !animating"
+      class="alert-secondary w-50"
+    >
+      Nenhum resultado encontrado.
+    </alert>
 
+    <transition-group
+      v-else
+      name="timeline-list"
+      tag="div"
+    >
       <timeline-item
-        v-else
         v-for="(item) in data"
         :key="item.transactionId"
         status="success"
@@ -69,6 +79,7 @@
           />
         </template>
       </timeline-item>
+    </transition-group>
   </div>
 </template>
 
@@ -96,13 +107,22 @@ export default {
     return {
       fields: tableConfig.fields,
       data: [],
+      animating: false,
     };
   },
 
   beforeMount() {
     this.fetchPurchases()
       .then(({ data }) => {
-        this.data = this.groupAndSortData(data);
+        this.animating = true;
+        this.groupAndSortData(data).forEach((group, i) => {
+          setTimeout(() => { // animates timeline-items
+            this.data.push(group);
+            this.animating = false;
+          }, 100 * (i + 1));
+        });
+      }).catch(() => {
+        this.animating = false;
       });
   },
 
@@ -119,6 +139,7 @@ export default {
 
     groupAndSortData(data) {
       if (!Object.keys(data).length) {
+        this.animating = false;
         return [];
       }
 
@@ -161,11 +182,11 @@ export default {
         const date1 = new Date(purchase1.timestamp);
         const date2 = new Date(purchase2.timestamp);
 
-        if (date1 > date2) {
+        if (date1 < date2) {
           return 1;
         }
 
-        if (date1 < date2) {
+        if (date1 > date2) {
           return -1;
         }
 
@@ -195,3 +216,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.timeline-list-enter-active, .timeline-list-leave-active {
+  transition: all 0.7s;
+}
+.timeline-list-enter, .timeline-list-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+</style>

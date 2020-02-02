@@ -2,6 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ffe56585-a8da-415f-8a2d-70dc066976b2/deploy-status)](https://app.netlify.com/sites/desafio-timeline/deploys)
 
+[Check the running demo!](https://desafio-timeline.netlify.com/)
+
 ## Project setup
 ```
 npm install

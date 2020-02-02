@@ -41,4 +41,12 @@ describe('Table.vue', () => {
   test('renders one <td> for each field data', () => {
     expect(wrapper.findAll('td').length).toBe(4);
   });
+
+  test('put border-bottom in each tr except in the last one', () => {
+    expect(wrapper.findAll('.border-bottom').length).toBe(2); // tr header + tr row
+
+    const trs = wrapper.findAll('tr');
+    expect(trs.at(trs.length - 1).classes())
+      .not.toContain('border-bottom'); // tr header + tr row
+  });
 });

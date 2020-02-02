@@ -6,17 +6,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    classes: {
-      type: String,
-      default: '',
-    },
-  },
-};
-</script>
-
 <style lang='scss' scoped>
 .alert {
   position: relative;

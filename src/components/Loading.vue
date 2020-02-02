@@ -12,12 +12,6 @@
   </div>
 </template>
 
-<script>
-export default {
-
-};
-</script>
-
 <style lang="scss" scoped>
 .lds-grid {
   display: inline-block;
